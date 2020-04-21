@@ -1,5 +1,9 @@
 package VirtualBank.Bank.userbean;
 
+import java.util.Properties;
+
+import javax.sql.DataSource;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,13 +17,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-
-
-import javax.sql.DataSource;
-import java.util.Properties;
-
 import VirtualBank.Bank.dao.UserDao;
-import VirtualBank.Bank.dao.UserDaoImpl;
 import VirtualBank.Bank.dao.UserDaoImplhib;
 import VirtualBank.Bank.service.UserService;
 import VirtualBank.Bank.service.UserServiceImpl;
@@ -34,10 +32,6 @@ public class AppConfig
 	public UserService userService() {
         return new UserServiceImpl();
     }
-	/*@Bean
-	public UserDao userDao() {
-        return new UserDaoImpl();
-    }*/
 	@Bean
 	public UserDao userDao() {
         return new UserDaoImplhib();

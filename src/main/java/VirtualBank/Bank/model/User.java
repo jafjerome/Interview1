@@ -1,44 +1,42 @@
 package VirtualBank.Bank.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("session")
 @Entity
 @Table(name = "Customer")
 public class User
 {     
 	    @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	    @Column(name = "id")
-	  private int id;
+	    @Column(name = "cid")
+	  private Integer id;
 	  private String username;
 	  private String password;
 	  private String firstname;
 	  private String lastname;
 	  private String email;
 	  private String address;
-	  private int phone;
-	  public User() 
-	  {
-	    }
-	  public User(String username,String password, String firstname,String lastname,
-			  String email,String address,int phone) {
-		  this.username = username;
-		  this.password = password;
-		  this.firstname = firstname;
-	        this.lastname = lastname;
-	        this.email = email;
-	        this.address=address;
-	        this.phone=phone;
-	    }
-	public int getId() {
+	  private String  phone;
+	  private String  account_number;
+	  private String  amount;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getUsername() {
@@ -77,16 +75,30 @@ public class User
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	public String getAccount_number() {
+		return account_number;
+	}
+	public void setAccount_number(String account_number) {
+		this.account_number = account_number;
+	}
+	public String getAmount() {
+		return amount;
+	}
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
-				+ ", lastname=" + lastname + ", email=" + email + ", address=" + address + ", phone=" + phone + "]";
+				+ ", lastname=" + lastname + ", email=" + email + ", address=" + address + ", phone=" + phone
+				+ ", account_number=" + account_number + ", amount=" + amount + "]";
 	}
+	  
 	  
 }

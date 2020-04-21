@@ -17,7 +17,7 @@ public class RegisterController
 {
 	@Autowired
 	  public UserService userService;
-	@RequestMapping(value = "/Register",method=RequestMethod.GET)	
+	@RequestMapping(value = "/Register", method = { RequestMethod.GET, RequestMethod.POST })	
 	 public ModelAndView register()  
 		{
 		ModelAndView mav = new ModelAndView("Register");
@@ -25,12 +25,14 @@ public class RegisterController
 	    return mav;
 		}
 	
-	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
+	@RequestMapping(value = "/registerProcess",  method = { RequestMethod.GET, RequestMethod.POST })
 	  public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
 	      @ModelAttribute("user") User user) {
-
 	    userService.register(user);
-
-	    return new ModelAndView("welcome", "firstname", user.getFirstname());
+	    ModelAndView mav = null;
+	    mav = new ModelAndView("welcome");
+	    mav.addObject("firstname", user.getFirstname());
+	    mav.addObject("accnum",user.getAccount_number());
+	    return mav;
 	  }
 }
